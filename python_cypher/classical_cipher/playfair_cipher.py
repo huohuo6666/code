@@ -107,7 +107,6 @@ class playfair:
             m_list.pop(i)
         return ''.join(m_list)
     
-
 if __name__=="__main__":
     m=input("请输入长度为偶数的明文，不然我们就要在后面加一个字符z喽_eng:")
     key=input("请输入密钥_eng:")

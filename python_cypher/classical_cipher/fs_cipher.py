@@ -13,6 +13,13 @@ class fangshe:
             gcd, x, y = self.exgcd(b % a, a)
             return gcd, y - (b // a) * x, x
 
+    def is_va_k1(self,k1):
+        gcd = self.inv(k1,26)         #导入的exgcd模块
+        while gcd  is False:
+            k1=int(input("请重新输入一个符合规范的k1,必须要跟26互素:"))  #保证k1有逆元，保证能解密
+            gcd=self.inv(k1,26) 
+        return k1
+        
 # 求逆元
     
     def inv(self,a, b):
@@ -53,26 +60,18 @@ class fangshe:
                 num = inv_k1*(ord(i)-ord('A')-k2)
                 num %= 26
                 m_list.append(chr(num+ord('A')))
-            else : m_list.append(i)
-            
-           
+            else : m_list.append(i)    
         return ''.join(m_list)
 
 if __name__ == "__main__":
     m = input("请输入一个明文_eng:")
     k1,k2 = map(int,input("请输入数字密钥:").split())
     x=fangshe()
-    gcd = x.inv(k1,26)         #导入的exgcd模块
-    if gcd  is False:
-        k1=int(input("请重新输入一个符合规范的k1,必须要跟26互素:"))  #保证k1有逆元，保证能解密
-    
-    # m = m.lower()
-    # m=re.sub(r'[^a-z]','',m)
-
+    k1=x.is_va_k1(k1)
     cipher_list = x.encrypt(m,k1,k2)
     print(f'密文:{cipher_list}')
     m_list = x.decrypt(cipher_list,k1,k2)
-    print(f'明文:{m_list}')
+    print(f'明文:{m_list}') 
     
     
 
