@@ -88,10 +88,8 @@ if __name__ == "__main__":
     p,q=map(int,(input("请输入想生成的两个大整数素数因子_num:")).split())
  
     e=int(input("请输入公钥e_num:"))
-    # c = encrypt(m, p1,q1)
     c = encrypt(m,p,q,e)
     # print(fs.encrypt('nihao',7,3))
-    d=ge_key(e,p,q)
-    m = decrypt(c,p,q,d)
+    m = decrypt(c,p,q,e)
     print(f'密文:{c}\n解密后的明文:{m}')
         
